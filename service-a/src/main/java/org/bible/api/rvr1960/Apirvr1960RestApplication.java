@@ -7,7 +7,7 @@ import javax.ws.rs.core.Application;
 /**
  *
  */
-@ApplicationPath("/data")
+@ApplicationPath("/rvr1960")
 @ApplicationScoped
 public class Apirvr1960RestApplication extends Application {
 }
