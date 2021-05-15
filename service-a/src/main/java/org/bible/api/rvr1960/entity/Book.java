@@ -17,18 +17,18 @@ public class Book implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "lib_id")
-    private Integer id;
+    private Short id;
     @Column(name = "lib_tes")
     private Character testament;
     @Size(max = 100)
     @Column(name = "lib_nom")
     private String name;
 
-    public Integer getId() {
+    public Short getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Short id) {
         this.id = id;
     }
 
@@ -58,7 +58,7 @@ public class Book implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Verse)) {
+        if (!(object instanceof Book)) {
             return false;
         }
         Book other = (Book) object;
