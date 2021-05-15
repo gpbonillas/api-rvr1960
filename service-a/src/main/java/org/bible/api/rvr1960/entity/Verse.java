@@ -8,7 +8,10 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "versiculos")
-@NamedQueries({@NamedQuery(name = "Verse.findAll", query = "SELECT v FROM Verse v")})
+@NamedQueries({
+        @NamedQuery(name = "Verse.findAll", query = "SELECT v FROM Verse v"),
+        @NamedQuery(name = "Verse.findByBookAndChapter",
+                query = "SELECT v FROM Verse v WHERE v.book.id = :bookID AND v.chapter = :chapter AND v.verseNumber = :verseNumber")})
 public class Verse implements Serializable {
 
     private static final long serialVersionUID = 1L;

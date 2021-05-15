@@ -6,6 +6,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.bible.api.rvr1960.entity.Verse;
+import org.bible.api.rvr1960.exception.BibleException;
 import org.bible.api.rvr1960.service.VerseService;
 import org.eclipse.microprofile.metrics.MetricUnits;
 import org.eclipse.microprofile.metrics.annotation.Counted;
@@ -53,6 +54,23 @@ public class VerseREST {
     @Path("{id}")
     public Response getVerse(@PathParam("id") Integer id) {
         Verse verse = verseService.findById(id);
+
+        return Response.ok(verse).build();
+    }
+
+    @GET
+    @Path("{bookID}/{chapter}/{verse}")
+    public Response getVerseByBookAndChapter(@PathParam("bookID") Short bookID,
+                                             @PathParam("chapter") Short chapterNumber,
+                                             @PathParam("verse") Short verseNumber) {
+
+        Verse verse = null;
+
+        try {
+            verse = verseService.getVerseByBookAndChapter(bookID, chapterNumber, verseNumber);
+        } catch (BibleException e) {
+            return Response.ok("Verse not found. Message: " + e.getMessage()).build();
+        }
 
         return Response.ok(verse).build();
     }
