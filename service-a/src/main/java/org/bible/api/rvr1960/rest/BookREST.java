@@ -51,7 +51,7 @@ public class BookREST {
             description = "Monitor how many times getBook method was called")
     @GET
     @Path("{id}")
-    public Response getProforma(@PathParam("id") Integer id) {
+    public Response getBook(@PathParam("id") Integer id) {
         Book book = bookService.findById(id);
 
         return Response.ok(book).build();
